@@ -82,7 +82,7 @@ spec:
     - name: pii-run
       runAfter: [git-clone]
       taskRef:
-        name: pii-collector
+        name: tester
       params:
         - name: pipeline-debug
           value: $(params.pipeline-debug)
