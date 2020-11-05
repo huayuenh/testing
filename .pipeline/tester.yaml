@@ -1,0 +1,26 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: tester
+spec:
+  params:
+    - name: pipeline-debug
+      description: Pipeline debug mode
+      default: "0"
+  workspaces:
+    - name: workspace
+      description: A workspace where the app is to be expected
+      mountPath: /artifacts
+  steps:
+    - name: tester
+      image: ibmcom/pipeline-base-image
+      workingDir: /artifacts
+      env:
+        - name: HOME
+          value: "/root"
+        - name: PIPELINE_DEBUG
+          value: $(params.pipeline-debug)
+      script: |
+        #!/bin/bash
+        echo "RUNNING"
