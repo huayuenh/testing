@@ -8,6 +8,7 @@ spec:
     - name: pipeline-debug
       description: Pipeline debug mode
       default: "0"
+    - name: apikey
   workspaces:
     - name: workspace
       description: A workspace where the app is to be expected
@@ -21,6 +22,12 @@ spec:
           value: "/root"
         - name: PIPELINE_DEBUG
           value: $(params.pipeline-debug)
+        - name: TESTVAL
+          value: $(params.apikey)
       script: |
         #!/bin/bash
         echo "RUNNING"
+        echo "TESTVAL $TESTVAL"
+        echo "$TESTVAL" | base64 > temp
+        cat temp
+
