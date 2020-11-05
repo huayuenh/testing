@@ -9,7 +9,7 @@ stages:
   inputs:
   - type: git
     branch: master
-    service: ${GIT_REPO}    
+    service: ${APP_REPO}    
   triggers:
   - type: commit
   properties:
@@ -23,7 +23,6 @@ stages:
     build_type: shell
     script: |+
       #!/bin/bash
-      export IKS_BETA_VERSION=1.0
       # set -x
 
       # Git repo cloned at $WORKING_DIR, copy into $ARCHIVE_DIR
@@ -48,7 +47,6 @@ stages:
     type: tester
     script: |-
       #!/bin/bash
-      export IKS_BETA_VERSION=1.0
       # set -x
       if [ -f ./tests/run-tests.sh ]; then
         source ./tests/run-tests.sh
@@ -90,7 +88,6 @@ stages:
     type: tester
     script: |-
       #!/bin/bash
-      export IKS_BETA_VERSION=1.0
       # uncomment to debug the script
       # set -x
       # copy the script below into your app code repo (e.g. ./scripts/check_dockerfile.sh) and 'source' it from your pipeline job
@@ -113,7 +110,6 @@ stages:
     image_name: ${APP_NAME}
     script: |-
       #!/bin/bash
-      export IKS_BETA_VERSION=1.0
       # uncomment to debug the script
       # set -x
       # copy the script below into your app code repo (e.g. ./scripts/check_registry.sh) and 'source' it from your pipeline job
@@ -136,7 +132,6 @@ stages:
     image_name: ${APP_NAME}
     script: |
       #!/bin/bash
-      export IKS_BETA_VERSION=1.0
       # uncomment to debug the script
       # set -x
       # copy the script below into your app code repo (e.g. ./scripts/build_image.sh) and 'source' it from your pipeline job
@@ -160,7 +155,6 @@ stages:
       api_key: ${API_KEY}
     script: |
       #!/bin/bash
-      export IKS_BETA_VERSION=1.0
       # uncomment to debug the script
       # set -x
       # copy the script below into your app code repo (e.g. ./scripts/check_vulnerabilities.sh) and 'source' it from your pipeline job
@@ -200,7 +194,6 @@ stages:
       kubernetes_cluster: ${PROD_CLUSTER_NAME}
     script: |
       #!/bin/bash
-      export IKS_BETA_VERSION=1.0
       # uncomment to debug the script
       # set -x
       # copy the script below into your app code repo (e.g. ./scripts/check_and_deploy_kubectl.sh) and 'source' it from your pipeline job
@@ -222,7 +215,6 @@ stages:
       kubernetes_cluster: ${PROD_CLUSTER_NAME}
     script: |-
       #!/bin/bash
-      export IKS_BETA_VERSION=1.0
       # uncomment to debug the script
       # set -x
       # copy the script below into your app code repo (e.g. ./scripts/check_health.sh) and 'source' it from your pipeline job
