@@ -10,8 +10,6 @@ spec:
       default: "0"
     - name: apikey
     - name: otherkey
-    - name: secret
-      default: "toolchain-apikey"
   workspaces:
     - name: workspace
       description: A workspace where the app is to be expected
@@ -29,11 +27,6 @@ spec:
           value: $(params.apikey)
         - name: OTHERVAL
           value: $(params.otherkey)
-        - name: SECRETS
-          valueFrom:
-            secretKeyRef:
-              name: $(params.continuous-delivery-context-secret)
-              key: $(params.secret)
       script: |
         #!/bin/bash
         echo "RUNNING"
@@ -43,7 +36,4 @@ spec:
         echo "OTHERVAL $OTHERVAL"
         echo "$OTHERVAL" | base64 > temp2
         cat temp2
-        echo "SECRETS $SECRETS"
-        echo "$SECRETS" | base64 > temp3
-        cat temp3 
 
