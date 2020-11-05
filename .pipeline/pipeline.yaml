@@ -49,6 +49,7 @@ spec:
     - name: pipeline-debug
       default: "0"
     - name: apikey
+    - name: otherkey
   workspaces:
     - name: pipeline-ws
   tasks:
@@ -89,6 +90,8 @@ spec:
           value: $(params.pipeline-debug)
         - name: apikey
           value: $(params.apikey)
+        - name: otherkey
+          value: $(params.otherkey)
       workspaces:
         - name: workspace
           workspace: pipeline-ws

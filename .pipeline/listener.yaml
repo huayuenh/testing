@@ -48,6 +48,7 @@ spec:
     - name: dev-cluster-namespace
       description: namespace dev
     - name: apikey
+    - name: otherkey
   resourcetemplates:
     - apiVersion: v1
       kind: PersistentVolumeClaim
@@ -108,6 +109,8 @@ spec:
             value: $(params.pipeline-debug)
           - name: apikey
             value: $(params.apikey)
+          - name: otherkey
+            value: $(params.otherkey)
         workspaces:
           - name: pipeline-ws
             persistentVolumeClaim:
